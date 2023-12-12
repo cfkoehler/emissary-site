@@ -147,16 +147,16 @@
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>             <strong class="jxr_keyword">if</strong> (newKey.equals(currEntry.getKey())) {
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>                 <strong class="jxr_keyword">if</strong> (newEntry.isBetterThan(currEntry)) {
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>                     <strong class="jxr_keyword">if</strong> (logger.isDebugEnabled()) {
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>                         logger.debug(<span class="jxr_string">"Duplicate keyed entry existing discarded "</span> + currEntry.getKey() + <span class="jxr_string">"$"</span> + currEntry.getExpense()
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>                                 + <span class="jxr_string">" more costly than incoming "</span> + newEntry.getExpense());
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>                         logger.debug(<span class="jxr_string">"Duplicate keyed entry existing discarded {}${} more costly than incoming {}"</span>, currEntry.getKey(),
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>                                 currEntry.getExpense(), newEntry.getExpense());
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>                     }
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>                     <strong class="jxr_keyword">this</strong>.remove(i);
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>                     <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>                 }
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>                 <em class="jxr_comment">// Current entry is better or just as good</em>
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>                 <strong class="jxr_keyword">if</strong> (logger.isDebugEnabled()) {
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>                     logger.debug(<span class="jxr_string">"Duplicate keyed incoming entry discarded "</span> + newKey + <span class="jxr_string">"$"</span> + newEntry.getExpense() + <span class="jxr_string">" is not as good as current "</span>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>                             + currEntry.getExpense());
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>                     logger.debug(<span class="jxr_string">"Duplicate keyed incoming entry discarded {}${} is not as good as current {}"</span>, newKey, newEntry.getExpense(),
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>                             currEntry.getExpense());
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>                 }
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>             }
@@ -241,7 +241,7 @@
 <a class="jxr_linenumber" name="L233" href="#L233">233</a>         }
 <a class="jxr_linenumber" name="L234" href="#L234">234</a> 
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>         <em class="jxr_comment">// we have more than one (which we really should prevent at start-up)</em>
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>         List&lt;String&gt; serviceList = <strong class="jxr_keyword">new</strong> ArrayList&lt;String&gt;();
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>         List&lt;String&gt; serviceList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L237" href="#L237">237</a>         <strong class="jxr_keyword">for</strong> (<a name="DirectoryEntry" href="../../emissary/directory/DirectoryEntry.html#DirectoryEntry">DirectoryEntry</a> entry : <strong class="jxr_keyword">this</strong>) {
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>             serviceList.add(entry.getKey());
 <a class="jxr_linenumber" name="L239" href="#L239">239</a>         }
@@ -282,7 +282,7 @@
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     * @return the new list</em>
 <a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L276" href="#L276">276</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;DirectoryEntry&gt; deepCopy(@Nullable <strong class="jxr_keyword">final</strong> List&lt;DirectoryEntry&gt; that, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> sort) {
-<a class="jxr_linenumber" name="L277" href="#L277">277</a>         <strong class="jxr_keyword">final</strong> List&lt;DirectoryEntry&gt; copies = <strong class="jxr_keyword">new</strong> ArrayList&lt;DirectoryEntry&gt;();
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>         <strong class="jxr_keyword">final</strong> List&lt;DirectoryEntry&gt; copies = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L278" href="#L278">278</a>         <strong class="jxr_keyword">if</strong> (that != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L279" href="#L279">279</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="DirectoryEntry" href="../../emissary/directory/DirectoryEntry.html#DirectoryEntry">DirectoryEntry</a> e : that) {
 <a class="jxr_linenumber" name="L280" href="#L280">280</a>                 copies.add(<strong class="jxr_keyword">new</strong> <a name="DirectoryEntry" href="../../emissary/directory/DirectoryEntry.html#DirectoryEntry">DirectoryEntry</a>(e));
@@ -297,6 +297,6 @@
 <a class="jxr_linenumber" name="L289" href="#L289">289</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>

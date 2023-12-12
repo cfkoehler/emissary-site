@@ -12,50 +12,50 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> emissary.command.EmissaryCommand;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> emissary.test.core.junit5.UnitTest;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.beust.jcommander.JCommander;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> java.io.ByteArrayOutputStream;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.io.PrintStream;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> java.util.Collections;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertFalse;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertIterableEquals;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertThrows;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertTrue;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">class</strong> <a name="EmissaryTest" href="../emissary/EmissaryTest.html#EmissaryTest">EmissaryTest</a> <strong class="jxr_keyword">extends</strong> <a name="UnitTest" href="../emissary/test/core/junit5/UnitTest.html#UnitTest">UnitTest</a> {
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> picocli.CommandLine;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> picocli.CommandLine.Command;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.io.ByteArrayOutputStream;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> java.io.PrintStream;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.util.Collections;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertFalse;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertIterableEquals;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertThrows;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.jupiter.api.Assertions.assertTrue;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">class</strong> <a name="EmissaryTest" href="../emissary/EmissaryTest.html#EmissaryTest">EmissaryTest</a> <strong class="jxr_keyword">extends</strong> <a name="UnitTest" href="../emissary/test/core/junit5/UnitTest.html#UnitTest">UnitTest</a> {
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>      @Test
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">void</strong> testDefaultCommands() {
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          assertTrue(Emissary.EMISSARY_COMMANDS.size() &gt; 0);
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      }
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      @Test
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">void</strong> testDefaultCommandsUnmodifiable() {
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>          JunkCommand cmd = <strong class="jxr_keyword">new</strong> JunkCommand();
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>          assertThrows(UnsupportedOperationException.<strong class="jxr_keyword">class</strong>, () -&gt; Emissary.EMISSARY_COMMANDS.put(<span class="jxr_string">"junk"</span>, cmd));
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      }
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      @Test
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">void</strong> testCommandNamesAreSorted() {
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          Map&lt;String, EmissaryCommand&gt; cmds = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>          cmds.put(<span class="jxr_string">"aaaa"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>          cmds.put(<span class="jxr_string">"zzzz"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>          cmds.put(<span class="jxr_string">"zaza"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          cmds.put(<span class="jxr_string">"eeee"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          Emissary emissary = <strong class="jxr_keyword">new</strong> Emissary(cmds);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      @Test
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">void</strong> testDefaultCommands() {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          assertTrue(Emissary.EMISSARY_COMMANDS.size() &gt; 0);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>      }
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      @Test
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">void</strong> testDefaultCommandsUnmodifiable() {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          JunkCommand cmd = <strong class="jxr_keyword">new</strong> JunkCommand();
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          assertThrows(UnsupportedOperationException.<strong class="jxr_keyword">class</strong>, () -&gt; Emissary.EMISSARY_COMMANDS.put(<span class="jxr_string">"junk"</span>, cmd));
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      }
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>      @Test
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">void</strong> testCommandNamesAreSorted() {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          Map&lt;String, EmissaryCommand&gt; cmds = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          cmds.put(<span class="jxr_string">"aaaa"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          cmds.put(<span class="jxr_string">"zzzz"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          cmds.put(<span class="jxr_string">"zaza"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          cmds.put(<span class="jxr_string">"eeee"</span>, <strong class="jxr_keyword">new</strong> JunkCommand());
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          Emissary emissary = <strong class="jxr_keyword">new</strong> Emissary(cmds);
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          ArrayList&lt;String&gt; sortedNames = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(cmds.keySet());
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          Collections.sort(sortedNames);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          ArrayList&lt;String&gt; namesAsStored = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(emissary.getJCommander().getCommands().keySet());
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          ArrayList&lt;String&gt; namesAsStored = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(emissary.getCommand().getSubcommands().keySet());
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>          assertIterableEquals(namesAsStored, sortedNames);
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      }
@@ -120,13 +120,13 @@
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>     <strong class="jxr_keyword">void</strong> testVerbose() {
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>         Map&lt;String, EmissaryCommand&gt; cmds = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>         <em class="jxr_comment">// like is done in the emissary script</em>
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>         System.setProperty(<span class="jxr_string">"set.jcommander.debug"</span>, <span class="jxr_string">"true"</span>);
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         System.setProperty(<span class="jxr_string">"set.picocli.debug"</span>, <span class="jxr_string">"true"</span>);
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>         cmds.put(<span class="jxr_string">"another"</span>, <strong class="jxr_keyword">new</strong> AnotherBaseCommand());
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>         Emissary2 emissary = <strong class="jxr_keyword">new</strong> Emissary2(cmds);
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>         emissary.execute(makeArgs(<span class="jxr_string">"another"</span>));
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>         assertTrue(emissary.getOut().contains(<span class="jxr_string">"JCommander] Parsing \&quot;another\&quot;"</span>));
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         assertTrue(emissary.getErr().contains(<span class="jxr_string">"picocli INFO] Parsing 1 command line args [another]"</span>));
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>     }
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>     <strong class="jxr_keyword">private</strong> String[] makeArgs(String... args) {
@@ -170,75 +170,77 @@
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>         }
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>     }
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> JunkCommand <strong class="jxr_keyword">implements</strong> EmissaryCommand {
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>         <strong class="jxr_keyword">final</strong> Logger LOG = LoggerFactory.getLogger(JunkCommand.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>         @Override
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>         <strong class="jxr_keyword">public</strong> String getCommandName() {
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"junk"</span>;
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>         }
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> 
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>         @Override
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(JCommander jc) {
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>             setup();
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>             LOG.info(<span class="jxr_string">"You got junk"</span>);
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>         }
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>         @Override
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setupCommand() {
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>             <em class="jxr_comment">// nothing to do here</em>
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>         }
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>         @Override
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> outputBanner() {
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>             LOG.info(<span class="jxr_string">"NOBANNER"</span>);
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>         }
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>     }
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> BrokeCommand <strong class="jxr_keyword">implements</strong> EmissaryCommand {
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> 
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>         @Override
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>         <strong class="jxr_keyword">public</strong> String getCommandName() {
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"broke"</span>;
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>         }
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>         @Override
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setupCommand() {
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>             <em class="jxr_comment">// nothing to do here</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>         }
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> 
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>         @Override
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(JCommander jc) {
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>             setup();
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"Still broken here"</span>);
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>         }
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> 
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>         @Override
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> outputBanner() {
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>             <em class="jxr_comment">// nothing thanks</em>
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>         }
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>     }
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> 
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> AnotherBaseCommand <strong class="jxr_keyword">extends</strong> BaseCommand {
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>         <em class="jxr_comment">// need to extend BaseCommand to get verbose options</em>
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>         <strong class="jxr_keyword">final</strong> Logger LOG = LoggerFactory.getLogger(AnotherBaseCommand.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> 
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>         @Override
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>         <strong class="jxr_keyword">public</strong> String getCommandName() {
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"another"</span>;
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>         }
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> 
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>         @Override
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(JCommander jc) {
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>             setup();
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>             LOG.info(<span class="jxr_string">"Another great command run"</span>);
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>         }
-<a class="jxr_linenumber" name="L228" href="#L228">228</a> 
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>     }
-<a class="jxr_linenumber" name="L230" href="#L230">230</a> 
-<a class="jxr_linenumber" name="L231" href="#L231">231</a> }
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>     @Command()
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> JunkCommand <strong class="jxr_keyword">implements</strong> EmissaryCommand {
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>         <strong class="jxr_keyword">final</strong> Logger LOG = LoggerFactory.getLogger(JunkCommand.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> 
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>         @Override
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>         <strong class="jxr_keyword">public</strong> String getCommandName() {
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"junk"</span>;
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>         }
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>         @Override
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(CommandLine c) {
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>             setup();
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>             LOG.info(<span class="jxr_string">"You got junk"</span>);
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>         }
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> 
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>         @Override
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setupCommand() {
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>             <em class="jxr_comment">// nothing to do here</em>
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>         }
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>         @Override
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> outputBanner() {
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>             LOG.info(<span class="jxr_string">"NOBANNER"</span>);
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>         }
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>     }
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>     @Command()
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> BrokeCommand <strong class="jxr_keyword">implements</strong> EmissaryCommand {
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>         @Override
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>         <strong class="jxr_keyword">public</strong> String getCommandName() {
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"broke"</span>;
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>         }
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>         @Override
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setupCommand() {
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>             <em class="jxr_comment">// nothing to do here</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>         }
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> 
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>         @Override
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(CommandLine c) {
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>             setup();
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> RuntimeException(<span class="jxr_string">"Still broken here"</span>);
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>         }
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> 
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>         @Override
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> outputBanner() {
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>             <em class="jxr_comment">// nothing thanks</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>         }
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>     }
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> 
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>     @Command()
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> AnotherBaseCommand <strong class="jxr_keyword">extends</strong> BaseCommand {
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>         <em class="jxr_comment">// need to extend BaseCommand to get verbose options</em>
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>         <strong class="jxr_keyword">final</strong> Logger LOG = LoggerFactory.getLogger(AnotherBaseCommand.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>         @Override
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>         <strong class="jxr_keyword">public</strong> String getCommandName() {
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"another"</span>;
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>         }
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> 
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>         @Override
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run(CommandLine c) {
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>             setup();
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>             LOG.info(<span class="jxr_string">"Another great command run"</span>);
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>         }
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>     }
+<a class="jxr_linenumber" name="L232" href="#L232">232</a> 
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>

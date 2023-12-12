@@ -61,41 +61,41 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      }
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> byte[] parseEscapedString(String s) {
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          List&lt;Number&gt; array = <strong class="jxr_keyword">new</strong> ArrayList&lt;Number&gt;();
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>          Stack&lt;Character&gt; chars = <strong class="jxr_keyword">new</strong> Stack&lt;Character&gt;();
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>          List&lt;Number&gt; array = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          Stack&lt;Character&gt; chars = <strong class="jxr_keyword">new</strong> Stack&lt;&gt;();
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = (s.length() - 1); i &gt;= 0; i--)
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>              chars.push(s.charAt(i));
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>          <strong class="jxr_keyword">while</strong> (!chars.empty()) {
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>              Character c = chars.pop();
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>              String val = EMPTYSTRING;
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>              <strong class="jxr_keyword">if</strong> (c.charValue() == '&#92;&#92;') {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>              <strong class="jxr_keyword">if</strong> (c == '&#92;&#92;') {
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>                  <strong class="jxr_keyword">if</strong> (chars.empty()) {
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>                      array.add(Integer.valueOf(32));
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>                      array.add(32);
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>                      <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>                  }
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>                  Character next = chars.peek();
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  <strong class="jxr_keyword">if</strong> (literals[next.charValue()] &gt; 0) {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>                      array.add(literals[next.charValue()]);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  <strong class="jxr_keyword">if</strong> (literals[next] &gt; 0) {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>                      array.add(literals[next]);
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>                      chars.pop();
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>                  } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (Character.isDigit(next.charValue())) {
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>                  } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (Character.isDigit(next)) {
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>                      <strong class="jxr_keyword">int</strong> max = 3;
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      <strong class="jxr_keyword">while</strong> (!chars.empty() &amp;&amp; Character.isDigit(next.charValue()) &amp;&amp; max-- &gt; 0) {
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>                          val += chars.pop().charValue();
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      <strong class="jxr_keyword">while</strong> (!chars.empty() &amp;&amp; Character.isDigit(next) &amp;&amp; max-- &gt; 0) {
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>                          val += chars.pop();
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>                          <strong class="jxr_keyword">if</strong> (!chars.empty())
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>                              next = chars.peek();
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>                      }
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>                      array.add(<strong class="jxr_keyword">new</strong> BigInteger(val, 8));
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>                      val = EMPTYSTRING;
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (next.charValue() == 'x') {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (next == 'x') {
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>                      chars.pop(); <em class="jxr_comment">// pop the hex symbol</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>                      val += (chars.pop()).charValue();
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>                      val += (chars.pop()).charValue();
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                      val += chars.pop();
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                      val += chars.pop();
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>                      array.add(<strong class="jxr_keyword">new</strong> BigInteger(val, 16));
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>                      val = EMPTYSTRING;
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>                  }
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>                  <strong class="jxr_keyword">continue</strong>;
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>              }
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              array.add(Integer.valueOf(c.charValue()));
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>              array.add((<strong class="jxr_keyword">int</strong>) c);
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>          }
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>          byte[] bytes = <strong class="jxr_keyword">new</strong> byte[array.size()];
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>          Iterator&lt;Number&gt; iter = array.iterator();
@@ -278,6 +278,6 @@
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>

@@ -38,7 +38,7 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 786319119844306571L;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      <em class="jxr_comment">// What we carry around with us</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">protected</strong> List&lt;IBaseDataObject&gt; payloadList = Collections.synchronizedList(<strong class="jxr_keyword">new</strong> ArrayList&lt;IBaseDataObject&gt;());
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">protected</strong> List&lt;IBaseDataObject&gt; payloadList = Collections.synchronizedList(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     * Still have the uncaught exception handler but not really in a true ThreadGroup</em>
@@ -126,7 +126,7 @@
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * Clear the payloadList and all other state info</em>
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>     @Override
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> clear() {
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> clear() {
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>         <strong class="jxr_keyword">super</strong>.clear();
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">this</strong>.payloadList.clear();
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>     }
@@ -226,7 +226,7 @@
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>                     atPlaceHD(currentPlace, <strong class="jxr_keyword">this</strong>.payloadList);
 <a class="jxr_linenumber" name="L219" href="#L219">219</a>                 } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>                     <em class="jxr_comment">// Add the primary payload object to a list</em>
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>                     <strong class="jxr_keyword">final</strong> List&lt;IBaseDataObject&gt; toBeProcessed = <strong class="jxr_keyword">new</strong> ArrayList&lt;IBaseDataObject&gt;();
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>                     <strong class="jxr_keyword">final</strong> List&lt;IBaseDataObject&gt; toBeProcessed = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L222" href="#L222">222</a>                     toBeProcessed.add(mypayload);
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>                     <em class="jxr_comment">// Add any other payload that has the same current form</em>
@@ -403,7 +403,7 @@
 <a class="jxr_linenumber" name="L395" href="#L395">395</a>     }
 <a class="jxr_linenumber" name="L396" href="#L396">396</a> 
 <a class="jxr_linenumber" name="L397" href="#L397">397</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     * Do work now that we have arrived a the specified place</em>
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">     * Do work now that we have arrived at the specified place</em>
 <a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * </em>
 <a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * @param place the place we are asking to work for us</em>
 <a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     * @param payloadListArg list of IBaseDataObject for the place to operate on</em>
@@ -521,97 +521,89 @@
 <a class="jxr_linenumber" name="L513" href="#L513">513</a>     }
 <a class="jxr_linenumber" name="L514" href="#L514">514</a> 
 <a class="jxr_linenumber" name="L515" href="#L515">515</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L516" href="#L516">516</a> <em class="jxr_javadoccomment">     * Report whether we are busy or not</em>
+<a class="jxr_linenumber" name="L516" href="#L516">516</a> <em class="jxr_javadoccomment">     * Setup the parallel type set tracking variable for a possible new payload</em>
 <a class="jxr_linenumber" name="L517" href="#L517">517</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L518" href="#L518">518</a>     @Override
-<a class="jxr_linenumber" name="L519" href="#L519">519</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isInUse() {
-<a class="jxr_linenumber" name="L520" href="#L520">520</a>         <strong class="jxr_keyword">return</strong> (<strong class="jxr_keyword">this</strong>.payloadList != <strong class="jxr_keyword">null</strong>) &amp;&amp; !<strong class="jxr_keyword">this</strong>.payloadList.isEmpty() &amp;&amp; (arrivalPlace != <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L521" href="#L521">521</a>     }
+<a class="jxr_linenumber" name="L518" href="#L518">518</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> setParallelTrackingInfoFor(<strong class="jxr_keyword">final</strong> <a name="IBaseDataObject" href="../../emissary/core/IBaseDataObject.html#IBaseDataObject">IBaseDataObject</a> d) {
+<a class="jxr_linenumber" name="L519" href="#L519">519</a> 
+<a class="jxr_linenumber" name="L520" href="#L520">520</a>         <em class="jxr_comment">// Clear out current value</em>
+<a class="jxr_linenumber" name="L521" href="#L521">521</a>         clearParallelTrackingInfo();
 <a class="jxr_linenumber" name="L522" href="#L522">522</a> 
-<a class="jxr_linenumber" name="L523" href="#L523">523</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L524" href="#L524">524</a> <em class="jxr_javadoccomment">     * Setup the parallel type set tracking variable for a possible new payload</em>
-<a class="jxr_linenumber" name="L525" href="#L525">525</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L526" href="#L526">526</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> setParallelTrackingInfoFor(<strong class="jxr_keyword">final</strong> <a name="IBaseDataObject" href="../../emissary/core/IBaseDataObject.html#IBaseDataObject">IBaseDataObject</a> d) {
-<a class="jxr_linenumber" name="L527" href="#L527">527</a> 
-<a class="jxr_linenumber" name="L528" href="#L528">528</a>         <em class="jxr_comment">// Clear out current value</em>
-<a class="jxr_linenumber" name="L529" href="#L529">529</a>         clearParallelTrackingInfo();
-<a class="jxr_linenumber" name="L530" href="#L530">530</a> 
-<a class="jxr_linenumber" name="L531" href="#L531">531</a>         <em class="jxr_comment">// Look at history from the tail backwards in time and</em>
-<a class="jxr_linenumber" name="L532" href="#L532">532</a>         <em class="jxr_comment">// while looking at the same parallelType serviceType</em>
-<a class="jxr_linenumber" name="L533" href="#L533">533</a>         <em class="jxr_comment">// add values to the visitedPlaces tracking variable.</em>
-<a class="jxr_linenumber" name="L534" href="#L534">534</a>         <em class="jxr_comment">// We need to do this because this data object may have</em>
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>         <em class="jxr_comment">// been processed through some of them as a slug and it</em>
-<a class="jxr_linenumber" name="L536" href="#L536">536</a>         <em class="jxr_comment">// will not have filled in the visitedPlace properly.</em>
-<a class="jxr_linenumber" name="L537" href="#L537">537</a>         <strong class="jxr_keyword">final</strong> List&lt;String&gt; history = d.transformHistory();
-<a class="jxr_linenumber" name="L538" href="#L538">538</a>         <strong class="jxr_keyword">int</strong> lastParallelType = -1;
-<a class="jxr_linenumber" name="L539" href="#L539">539</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = history.size() - 1; i &gt;= 0; i--) {
-<a class="jxr_linenumber" name="L540" href="#L540">540</a>             <strong class="jxr_keyword">final</strong> String key = history.get(i);
-<a class="jxr_linenumber" name="L541" href="#L541">541</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> typeSet = typeLookup(KeyManipulator.getServiceType(key));
-<a class="jxr_linenumber" name="L542" href="#L542">542</a>             <strong class="jxr_keyword">if</strong> (lastParallelType == -1 &amp;&amp; isParallelServiceType(typeSet)) {
-<a class="jxr_linenumber" name="L543" href="#L543">543</a>                 lastParallelType = typeSet;
-<a class="jxr_linenumber" name="L544" href="#L544">544</a>             }
-<a class="jxr_linenumber" name="L545" href="#L545">545</a>             <strong class="jxr_keyword">if</strong> (typeSet != lastParallelType) {
-<a class="jxr_linenumber" name="L546" href="#L546">546</a>                 <strong class="jxr_keyword">break</strong>;
-<a class="jxr_linenumber" name="L547" href="#L547">547</a>             }
-<a class="jxr_linenumber" name="L548" href="#L548">548</a>             addParallelTrackingInfo(KeyManipulator.getServiceName(key));
-<a class="jxr_linenumber" name="L549" href="#L549">549</a>         }
-<a class="jxr_linenumber" name="L550" href="#L550">550</a>     }
-<a class="jxr_linenumber" name="L551" href="#L551">551</a> 
-<a class="jxr_linenumber" name="L552" href="#L552">552</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L553" href="#L553">553</a> <em class="jxr_javadoccomment">     * To string method useful from the Namespace when bound there</em>
-<a class="jxr_linenumber" name="L554" href="#L554">554</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L555" href="#L555">555</a>     @Override
-<a class="jxr_linenumber" name="L556" href="#L556">556</a>     <strong class="jxr_keyword">public</strong> String toString() {
-<a class="jxr_linenumber" name="L557" href="#L557">557</a>         <strong class="jxr_keyword">if</strong> (isZombie()) {
-<a class="jxr_linenumber" name="L558" href="#L558">558</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"Closed"</span>;
-<a class="jxr_linenumber" name="L559" href="#L559">559</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (!isInUse()) {
-<a class="jxr_linenumber" name="L560" href="#L560">560</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"Idle"</span>;
-<a class="jxr_linenumber" name="L561" href="#L561">561</a>         }
-<a class="jxr_linenumber" name="L562" href="#L562">562</a> 
-<a class="jxr_linenumber" name="L563" href="#L563">563</a>         String sn = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L564" href="#L564">564</a>         <strong class="jxr_keyword">int</strong> sz = 0;
-<a class="jxr_linenumber" name="L565" href="#L565">565</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.payloadList != <strong class="jxr_keyword">null</strong> &amp;&amp; !<strong class="jxr_keyword">this</strong>.payloadList.isEmpty()) {
-<a class="jxr_linenumber" name="L566" href="#L566">566</a>             <em class="jxr_comment">// Avoid synchronizing this [don't call getPayload()]</em>
-<a class="jxr_linenumber" name="L567" href="#L567">567</a>             <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L568" href="#L568">568</a>                 sn = <strong class="jxr_keyword">this</strong>.payloadList.get(0).shortName();
-<a class="jxr_linenumber" name="L569" href="#L569">569</a>                 sz = <strong class="jxr_keyword">this</strong>.payloadList.size();
-<a class="jxr_linenumber" name="L570" href="#L570">570</a>             } <strong class="jxr_keyword">catch</strong> (Throwable t) {
-<a class="jxr_linenumber" name="L571" href="#L571">571</a>                 <em class="jxr_comment">// empty catch block</em>
-<a class="jxr_linenumber" name="L572" href="#L572">572</a>             }
-<a class="jxr_linenumber" name="L573" href="#L573">573</a>         }
-<a class="jxr_linenumber" name="L574" href="#L574">574</a>         <strong class="jxr_keyword">if</strong> (sn == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L575" href="#L575">575</a>             sn = <span class="jxr_string">"Missing payload"</span>;
-<a class="jxr_linenumber" name="L576" href="#L576">576</a>         }
-<a class="jxr_linenumber" name="L577" href="#L577">577</a>         <strong class="jxr_keyword">return</strong> sn + <span class="jxr_string">"("</span> + sz + <span class="jxr_string">") - "</span> + lastPlaceProcessed;
+<a class="jxr_linenumber" name="L523" href="#L523">523</a>         <em class="jxr_comment">// Look at history from the tail backwards in time and</em>
+<a class="jxr_linenumber" name="L524" href="#L524">524</a>         <em class="jxr_comment">// while looking at the same parallelType serviceType</em>
+<a class="jxr_linenumber" name="L525" href="#L525">525</a>         <em class="jxr_comment">// add values to the visitedPlaces tracking variable.</em>
+<a class="jxr_linenumber" name="L526" href="#L526">526</a>         <em class="jxr_comment">// We need to do this because this data object may have</em>
+<a class="jxr_linenumber" name="L527" href="#L527">527</a>         <em class="jxr_comment">// been processed through some of them as a slug and it</em>
+<a class="jxr_linenumber" name="L528" href="#L528">528</a>         <em class="jxr_comment">// will not have filled in the visitedPlace properly.</em>
+<a class="jxr_linenumber" name="L529" href="#L529">529</a>         <strong class="jxr_keyword">final</strong> List&lt;String&gt; history = d.transformHistory();
+<a class="jxr_linenumber" name="L530" href="#L530">530</a>         <strong class="jxr_keyword">int</strong> lastParallelType = -1;
+<a class="jxr_linenumber" name="L531" href="#L531">531</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = history.size() - 1; i &gt;= 0; i--) {
+<a class="jxr_linenumber" name="L532" href="#L532">532</a>             <strong class="jxr_keyword">final</strong> String key = history.get(i);
+<a class="jxr_linenumber" name="L533" href="#L533">533</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> typeSet = typeLookup(KeyManipulator.getServiceType(key));
+<a class="jxr_linenumber" name="L534" href="#L534">534</a>             <strong class="jxr_keyword">if</strong> (lastParallelType == -1 &amp;&amp; isParallelServiceType(typeSet)) {
+<a class="jxr_linenumber" name="L535" href="#L535">535</a>                 lastParallelType = typeSet;
+<a class="jxr_linenumber" name="L536" href="#L536">536</a>             }
+<a class="jxr_linenumber" name="L537" href="#L537">537</a>             <strong class="jxr_keyword">if</strong> (typeSet != lastParallelType) {
+<a class="jxr_linenumber" name="L538" href="#L538">538</a>                 <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L539" href="#L539">539</a>             }
+<a class="jxr_linenumber" name="L540" href="#L540">540</a>             addParallelTrackingInfo(KeyManipulator.getServiceName(key));
+<a class="jxr_linenumber" name="L541" href="#L541">541</a>         }
+<a class="jxr_linenumber" name="L542" href="#L542">542</a>     }
+<a class="jxr_linenumber" name="L543" href="#L543">543</a> 
+<a class="jxr_linenumber" name="L544" href="#L544">544</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L545" href="#L545">545</a> <em class="jxr_javadoccomment">     * To string method useful from the Namespace when bound there</em>
+<a class="jxr_linenumber" name="L546" href="#L546">546</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L547" href="#L547">547</a>     @Override
+<a class="jxr_linenumber" name="L548" href="#L548">548</a>     <strong class="jxr_keyword">public</strong> String toString() {
+<a class="jxr_linenumber" name="L549" href="#L549">549</a>         <strong class="jxr_keyword">if</strong> (isZombie()) {
+<a class="jxr_linenumber" name="L550" href="#L550">550</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"Closed"</span>;
+<a class="jxr_linenumber" name="L551" href="#L551">551</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (!isInUse()) {
+<a class="jxr_linenumber" name="L552" href="#L552">552</a>             <strong class="jxr_keyword">return</strong> <span class="jxr_string">"Idle"</span>;
+<a class="jxr_linenumber" name="L553" href="#L553">553</a>         }
+<a class="jxr_linenumber" name="L554" href="#L554">554</a> 
+<a class="jxr_linenumber" name="L555" href="#L555">555</a>         String sn = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L556" href="#L556">556</a>         <strong class="jxr_keyword">int</strong> sz = 0;
+<a class="jxr_linenumber" name="L557" href="#L557">557</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.payloadList != <strong class="jxr_keyword">null</strong> &amp;&amp; !<strong class="jxr_keyword">this</strong>.payloadList.isEmpty()) {
+<a class="jxr_linenumber" name="L558" href="#L558">558</a>             <em class="jxr_comment">// Avoid synchronizing this [don't call getPayload()]</em>
+<a class="jxr_linenumber" name="L559" href="#L559">559</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L560" href="#L560">560</a>                 sn = <strong class="jxr_keyword">this</strong>.payloadList.get(0).shortName();
+<a class="jxr_linenumber" name="L561" href="#L561">561</a>                 sz = <strong class="jxr_keyword">this</strong>.payloadList.size();
+<a class="jxr_linenumber" name="L562" href="#L562">562</a>             } <strong class="jxr_keyword">catch</strong> (Throwable t) {
+<a class="jxr_linenumber" name="L563" href="#L563">563</a>                 <em class="jxr_comment">// empty catch block</em>
+<a class="jxr_linenumber" name="L564" href="#L564">564</a>             }
+<a class="jxr_linenumber" name="L565" href="#L565">565</a>         }
+<a class="jxr_linenumber" name="L566" href="#L566">566</a>         <strong class="jxr_keyword">if</strong> (sn == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L567" href="#L567">567</a>             sn = <span class="jxr_string">"Missing payload"</span>;
+<a class="jxr_linenumber" name="L568" href="#L568">568</a>         }
+<a class="jxr_linenumber" name="L569" href="#L569">569</a>         <strong class="jxr_keyword">return</strong> sn + <span class="jxr_string">"("</span> + sz + <span class="jxr_string">") - "</span> + lastPlaceProcessed;
+<a class="jxr_linenumber" name="L570" href="#L570">570</a>     }
+<a class="jxr_linenumber" name="L571" href="#L571">571</a> 
+<a class="jxr_linenumber" name="L572" href="#L572">572</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L573" href="#L573">573</a> <em class="jxr_javadoccomment">     * @return the lastPlaceProcessed</em>
+<a class="jxr_linenumber" name="L574" href="#L574">574</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L575" href="#L575">575</a>     @Override
+<a class="jxr_linenumber" name="L576" href="#L576">576</a>     <strong class="jxr_keyword">public</strong> String getLastPlaceProcessed() {
+<a class="jxr_linenumber" name="L577" href="#L577">577</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.lastPlaceProcessed;
 <a class="jxr_linenumber" name="L578" href="#L578">578</a>     }
 <a class="jxr_linenumber" name="L579" href="#L579">579</a> 
 <a class="jxr_linenumber" name="L580" href="#L580">580</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L581" href="#L581">581</a> <em class="jxr_javadoccomment">     * @return the lastPlaceProcessed</em>
+<a class="jxr_linenumber" name="L581" href="#L581">581</a> <em class="jxr_javadoccomment">     * Interrupt the agent's thread Seems a little weird to be public, but there aren't a lot of choices.</em>
 <a class="jxr_linenumber" name="L582" href="#L582">582</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L583" href="#L583">583</a>     @Override
-<a class="jxr_linenumber" name="L584" href="#L584">584</a>     <strong class="jxr_keyword">public</strong> String getLastPlaceProcessed() {
-<a class="jxr_linenumber" name="L585" href="#L585">585</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.lastPlaceProcessed;
+<a class="jxr_linenumber" name="L584" href="#L584">584</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> interrupt() {
+<a class="jxr_linenumber" name="L585" href="#L585">585</a>         <strong class="jxr_keyword">this</strong>.thread.interrupt();
 <a class="jxr_linenumber" name="L586" href="#L586">586</a>     }
 <a class="jxr_linenumber" name="L587" href="#L587">587</a> 
 <a class="jxr_linenumber" name="L588" href="#L588">588</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L589" href="#L589">589</a> <em class="jxr_javadoccomment">     * Interrupt the agent's thread Seems a little weird to be public, but there aren't a lot of choices.</em>
+<a class="jxr_linenumber" name="L589" href="#L589">589</a> <em class="jxr_javadoccomment">     * Determine if this agent is walking un-dead</em>
 <a class="jxr_linenumber" name="L590" href="#L590">590</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L591" href="#L591">591</a>     @Override
-<a class="jxr_linenumber" name="L592" href="#L592">592</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> interrupt() {
-<a class="jxr_linenumber" name="L593" href="#L593">593</a>         <strong class="jxr_keyword">this</strong>.thread.interrupt();
+<a class="jxr_linenumber" name="L592" href="#L592">592</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isZombie() {
+<a class="jxr_linenumber" name="L593" href="#L593">593</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.timeToQuit;
 <a class="jxr_linenumber" name="L594" href="#L594">594</a>     }
 <a class="jxr_linenumber" name="L595" href="#L595">595</a> 
-<a class="jxr_linenumber" name="L596" href="#L596">596</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L597" href="#L597">597</a> <em class="jxr_javadoccomment">     * Determine if this agent is walking un-dead</em>
-<a class="jxr_linenumber" name="L598" href="#L598">598</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L599" href="#L599">599</a>     @Override
-<a class="jxr_linenumber" name="L600" href="#L600">600</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isZombie() {
-<a class="jxr_linenumber" name="L601" href="#L601">601</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.timeToQuit;
-<a class="jxr_linenumber" name="L602" href="#L602">602</a>     }
-<a class="jxr_linenumber" name="L603" href="#L603">603</a> 
-<a class="jxr_linenumber" name="L604" href="#L604">604</a> }
+<a class="jxr_linenumber" name="L596" href="#L596">596</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>

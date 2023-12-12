@@ -51,7 +51,7 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      @Override
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> placeRegistered(<strong class="jxr_keyword">final</strong> String observableKey, <strong class="jxr_keyword">final</strong> String placeKey) {
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          logger.debug(<span class="jxr_string">"Place registered "</span> + placeKey + <span class="jxr_string">" in directory "</span> + observableKey);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          logger.debug(<span class="jxr_string">"Place registered {} in directory {}"</span>, placeKey, observableKey);
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/**</em>
@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      @Override
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> placeDeregistered(<strong class="jxr_keyword">final</strong> String observableKey, <strong class="jxr_keyword">final</strong> String placeKey) {
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>          logger.debug(<span class="jxr_string">"Place deregistered "</span> + placeKey + <span class="jxr_string">" in directory "</span> + observableKey);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          logger.debug(<span class="jxr_string">"Place deregistered {} in directory {}"</span>, placeKey, observableKey);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      }
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      <em class="jxr_javadoccomment">/**</em>
@@ -73,7 +73,7 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      @Override
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> placeCostChanged(<strong class="jxr_keyword">final</strong> String observableKey, <strong class="jxr_keyword">final</strong> String placeKey) {
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          logger.debug(<span class="jxr_string">"Place cost change "</span> + placeKey + <span class="jxr_string">" in directory "</span> + observableKey);
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          logger.debug(<span class="jxr_string">"Place cost change {} in directory {}"</span>, placeKey, observableKey);
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      }
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      <em class="jxr_javadoccomment">/**</em>
@@ -94,7 +94,7 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>      @Override
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> peerUpdate(<strong class="jxr_keyword">final</strong> String observableKey, <strong class="jxr_keyword">final</strong> Set&lt;DirectoryEntry&gt; peers) {
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>          logger.debug(<span class="jxr_string">"Peer group updates from "</span> + observableKey + <span class="jxr_string">" set is now "</span> + peers);
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          logger.debug(<span class="jxr_string">"Peer group updates from {} set is now {}"</span>, observableKey, peers);
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>      }
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>      <em class="jxr_javadoccomment">/**</em>
@@ -123,6 +123,6 @@
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>

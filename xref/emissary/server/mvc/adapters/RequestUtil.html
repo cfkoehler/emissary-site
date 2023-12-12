@@ -241,7 +241,7 @@
 <a class="jxr_linenumber" name="L233" href="#L233">233</a> <em class="jxr_javadoccomment">     * @param parameter the String to sanitize</em>
 <a class="jxr_linenumber" name="L234" href="#L234">234</a> <em class="jxr_javadoccomment">     * @return a new String object with any CR/LF characters removed or null when the provided argument is null</em>
 <a class="jxr_linenumber" name="L235" href="#L235">235</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> String sanitizeParameter(String parameter) {
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String sanitizeParameter(String parameter) {
 <a class="jxr_linenumber" name="L237" href="#L237">237</a>         <strong class="jxr_keyword">return</strong> (<strong class="jxr_keyword">null</strong> == parameter ? <strong class="jxr_keyword">null</strong> : parameter.replaceAll(<span class="jxr_string">"[\n\r]"</span>, <span class="jxr_string">"_"</span>));
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>     }
 <a class="jxr_linenumber" name="L239" href="#L239">239</a> 
@@ -251,7 +251,7 @@
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">     * @param parameters the String[] to sanitize</em>
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">     * @return a new String[] object with any CR/LF characters removed</em>
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> String[] sanitizeParameters(String[] parameters) {
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> String[] sanitizeParameters(String[] parameters) {
 <a class="jxr_linenumber" name="L247" href="#L247">247</a>         List&lt;String&gt; sanitizedParameters = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L248" href="#L248">248</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != parameters) {
 <a class="jxr_linenumber" name="L249" href="#L249">249</a>             <strong class="jxr_keyword">for</strong> (String parameter : parameters) {
@@ -260,9 +260,25 @@
 <a class="jxr_linenumber" name="L252" href="#L252">252</a>         }
 <a class="jxr_linenumber" name="L253" href="#L253">253</a>         <strong class="jxr_keyword">return</strong> sanitizedParameters.toArray(<strong class="jxr_keyword">new</strong> String[0]);
 <a class="jxr_linenumber" name="L254" href="#L254">254</a>     }
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> }
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> 
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">     * Sanitize request parameters to remove CR/LF values</em>
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> <em class="jxr_javadoccomment">     * @param parameters the List String to sanitize</em>
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> <em class="jxr_javadoccomment">     * @return a new List String object with any CR/LF characters removed</em>
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L262" href="#L262">262</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;String&gt; sanitizeParametersStringList(List&lt;String&gt; parameters) {
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>         List&lt;String&gt; sanitizedParameters = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L264" href="#L264">264</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">null</strong> != parameters) {
+<a class="jxr_linenumber" name="L265" href="#L265">265</a>             <strong class="jxr_keyword">for</strong> (String parameter : parameters) {
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>                 sanitizedParameters.add(sanitizeParameter(parameter));
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>             }
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>         }
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>         <strong class="jxr_keyword">return</strong> sanitizedParameters;
+<a class="jxr_linenumber" name="L270" href="#L270">270</a>     }
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>

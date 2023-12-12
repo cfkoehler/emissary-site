@@ -81,7 +81,7 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>                      dir = DirectoryPlace.lookup();
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>                  }
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>              } <strong class="jxr_keyword">catch</strong> (<a name="EmissaryException" href="../../emissary/core/EmissaryException.html#EmissaryException">EmissaryException</a> ex) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>                  <strong class="jxr_keyword">this</strong>.logger.debug(<span class="jxr_string">"Could not find local directory "</span> + name);
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>                  <strong class="jxr_keyword">this</strong>.logger.debug(<span class="jxr_string">"Could not find local directory {}"</span>, name);
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>              }
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>              <a name="IRemoteDirectory" href="../../emissary/directory/IRemoteDirectory.html#IRemoteDirectory">IRemoteDirectory</a> remoteDirectory = <strong class="jxr_keyword">null</strong>;
@@ -98,6 +98,6 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2023 <a href="https://code.nsa.gov">National Security Agency</a>. All rights reserved.</div>
 </body>
 </html>
